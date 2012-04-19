@@ -1,6 +1,17 @@
 ﻿Public Class IUserDatabase
 
-    Property problemNumber As Integer
+    Dim VProblemNumber As Integer
+
+    Property ProblemNumber() As Integer
+        Get
+            Return VProblemNumber
+        End Get
+        Set(ByVal value As Integer)
+            VProblemNumber = value
+        End Set
+    End Property
+
+
     Function ClearDatabase() As Boolean
         Dim connection As SqlConnection
         connString = ""
@@ -20,6 +31,7 @@
         connection = Nothing
         Return Clear
     End Function
+
     Function RandomGenerateUser(ByVal userNumber As Integer) As Boolean
         Dim rand = New System.Random()
         Dim id As Integer
@@ -76,6 +88,7 @@
         connection = Nothing
         Return True
     End Function
+
     Function IsUserValid(ByVal name As String, ByVal password As String) As Boolean
         Dim id As Integer
         Dim passwd As Integer

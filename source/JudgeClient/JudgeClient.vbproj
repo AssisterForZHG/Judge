@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F0936007-2994-4BB3-A220-231F1100B001}</ProjectGuid>
+    <ProjectGuid>{956F7A31-602A-4D5B-9E5C-32AD59EE9B18}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>JudgeServer.My.MyApplication</StartupObject>
-    <RootNamespace>JudgeServer</RootNamespace>
-    <AssemblyName>JudgeServer</AssemblyName>
+    <StartupObject>JudgeClient.My.MyApplication</StartupObject>
+    <RootNamespace>JudgeClient</RootNamespace>
+    <AssemblyName>JudgeClient</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -22,7 +22,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>JudgeServer.xml</DocumentationFile>
+    <DocumentationFile>JudgeClient.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
@@ -32,7 +32,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>JudgeServer.xml</DocumentationFile>
+    <DocumentationFile>JudgeClient.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -71,6 +71,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Main.Designer.vb">
+      <DependentUpon>Main.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Main.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

@@ -31,10 +31,12 @@ private:
     QProcess *compileProcess;
     QProcess *runProcess;
     QTime *runTime;
+    bool isCompileCorrect;
 
 private slots:
-    void compileOutput();
+    void compileError();
     void compileComplete();
+    void standardError();
     void standardOutput();
     void standardComplete();
 };

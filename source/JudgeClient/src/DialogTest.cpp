@@ -32,8 +32,9 @@ void DialogTest::selectInputFile()
 
 void DialogTest::testFile()
 {
+    this->isCompileCorrect = true;
     this->compileProcess = new QProcess(this);
-    this->connect(this->compileProcess, SIGNAL(readyRead()), this, SLOT(compileOutput()));
+    this->connect(this->compileProcess, SIGNAL(readyReadStandardError()), this, SLOT(compileError()));
     this->connect(this->compileProcess, SIGNAL(finished(int)), this, SLOT(compileComplete()));
     switch(compiler)
     {
@@ -50,35 +51,49 @@ void DialogTest::testFile()
     this->exec();
 }
 
-void DialogTest::compileOutput()
+void DialogTest::compileError()
 {
-    this->ui->compilerTextEdit->appendPlainText(this->compileProcess->readAll());
+    this->ui->compilerTextEdit->appendPlainText(this->compileProcess->readAllStandardError());
+    this->isCompileCorrect = false;
 }
 
 void DialogTest::compileComplete()
 {
-    this->ui->compilerTextEdit->appendPlainText("complete");
-    this->runProcess = new QProcess(this);
-    this->runProcess->setStandardInputFile(this->inputFileName);
-    this->connect(this->runProcess, SIGNAL(readyRead()), this, SLOT(standardOutput()));
-    this->connect(this->runProcess, SIGNAL(finished(int)), this, SLOT(standardComplete()));
-    this->runTime = new QTime();
-    switch(this->compiler)
+    if(this->isCompileCorrect)
     {
-    case Information::COMPILER_GNU_C:
-    case Information::COMPILER_GNU_CPP:
-        this->runProcess->start("main.exe");
-        break;
-    case Information::COMPILER_JAVA:
-        this->runProcess->start("java Main");
-        break;
+        this->ui->compilerTextEdit->appendPlainText(tr("Compile successfully."));
+        this->runProcess = new QProcess(this);
+        this->runProcess->setStandardInputFile(this->inputFileName);
+        this->connect(this->runProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(standardOutput()));
+        this->connect(this->runProcess, SIGNAL(readyReadStandardError()), this, SLOT(standardError()));
+        this->connect(this->runProcess, SIGNAL(finished(int)), this, SLOT(standardComplete()));
+        this->runTime = new QTime();
+        switch(this->compiler)
+        {
+        case Information::COMPILER_GNU_C:
+        case Information::COMPILER_GNU_CPP:
+            this->runProcess->start("main.exe");
+            break;
+        case Information::COMPILER_JAVA:
+            this->runProcess->start("java Main");
+            break;
+        }
+        this->runTime->start();
     }
-    this->runTime->start();
+    else
+    {
+        this->ui->standardTextEdit->setPlainText(tr("There is no output."));
+    }
+}
+
+void DialogTest::standardError()
+{
+    this->ui->standardTextEdit->appendPlainText(this->runProcess->readAllStandardError());
 }
 
 void DialogTest::standardOutput()
 {
-    this->ui->standardTextEdit->appendPlainText(this->runProcess->readAll());
+    this->ui->standardTextEdit->appendPlainText(this->runProcess->readAllStandardOutput());
 }
 
 void DialogTest::standardComplete()

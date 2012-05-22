@@ -18,10 +18,12 @@ MainWindow::~MainWindow()
 void MainWindow::initTabs()
 {
     this->frameSubmit           = new FrameSubmit(this);
+    this->frameRequest          = new FrameRequest(this);
     this->frameClarifications   = new FrameClarifications(this);
     this->frameRuns             = new FrameRuns(this);
     this->frameSetting          = new FrameSetting(this);
     this->ui->submitTab->layout()->addWidget(this->frameSubmit);
+    this->ui->requestTab->layout()->addWidget(this->frameRequest);
     this->ui->clarificationsTab->layout()->addWidget(this->frameClarifications);
     this->ui->runsTab->layout()->addWidget(this->frameRuns);
     this->ui->settingsTab->layout()->addWidget(this->frameSetting);

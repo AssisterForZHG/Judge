@@ -20,7 +20,8 @@ SOURCES += src/main.cpp\
     src/FrameRuns.cpp \
     src/FrameSetting.cpp \
     src/Information.cpp \
-    src/DialogTest.cpp
+    src/DialogTest.cpp \
+    src/FrameRequest.cpp
 
 HEADERS  += include/Login.h \
     include/MainWindow.h \
@@ -29,7 +30,8 @@ HEADERS  += include/Login.h \
     include/FrameRuns.h \
     include/FrameSetting.h \
     include/Information.h \
-    include/DialogTest.h
+    include/DialogTest.h \
+    include/FrameRequest.h
 
 FORMS    += forms/Login.ui \
     forms/MainWindow.ui \
@@ -37,4 +39,5 @@ FORMS    += forms/Login.ui \
     forms/FrameClarifications.ui \
     forms/FrameRuns.ui \
     forms/FrameSetting.ui \
-    forms/DialogTest.ui
+    forms/DialogTest.ui \
+    forms/FrameRequest.ui

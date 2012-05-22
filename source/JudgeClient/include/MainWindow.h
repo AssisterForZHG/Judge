@@ -5,8 +5,9 @@
 #include <QString>
 #include "Information.h"
 #include "FrameSubmit.h"
-#include "FrameClarifications.h"
 #include "FrameRuns.h"
+#include "FrameRequest.h"
+#include "FrameClarifications.h"
 #include "FrameSetting.h"
 
 namespace Ui {
@@ -27,6 +28,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     FrameSubmit             *frameSubmit;
+    FrameRequest            *frameRequest;
     FrameClarifications     *frameClarifications;
     FrameRuns               *frameRuns;
     FrameSetting            *frameSetting;
